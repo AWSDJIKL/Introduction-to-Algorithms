@@ -11,17 +11,26 @@ def merge_sort(list, start, end):
     merge(list, start, mid, end)
     return
 
-
+#2.3-2 重写merge，不使用哨兵
 def merge(list, start, mid, end):
     left = list[start:mid]
     right = list[mid:end]
-    left.append(math.inf)
-    right.append(math.inf)
-    for i in range(end - start):
+    # left.append(math.inf)
+    # right.append(math.inf)
+    i = 0
+    while len(left) > 0 and len(right) > 0:
         if left[0] <= right[0]:
             list[start + i] = left.pop(0)
         else:
             list[start + i] = right.pop(0)
+        i += 1
+    list[start + i:start + i + len(left)] = left
+    list[start + i + len(left):start + i + len(left) + len(right)] = right
+    # for i in range(end - start):
+    #     if left[0] <= right[0]:
+    #         list[start + i] = left.pop(0)
+    #     else:
+    #         list[start + i] = right.pop(0)
     return
 
 
